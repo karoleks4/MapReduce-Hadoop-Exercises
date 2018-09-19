@@ -1,0 +1,3 @@
+#!/bin/bash
+#hdfs dfs -rm -r /user/$USER/data/output7.out
+hadoop jar /opt/hadoop/hadoop-2.7.3/share/hadoop/tools/lib/hadoop-streaming-2.7.3.jar -D mapreduce.job.output.key.comparator.class=org.apache.hadoop.mapreduce.lib.partition.KeyFieldBasedComparator -D stream.num.map.output.key.fields=2 -D num.key.fields.for.partition=1 -D mapreduce.partition.keycomparator.options="-k1 -k2" -input /data/assignments/ex1/uniLarge.txt -output /user/$USER/data/output7.out -mapper mapper7.py -file mapper7.py -reducer reducer7.py -file reducer7.py -partitioner org.apache.hadoop.mapred.lib.KeyFieldBasedPartitioner
